@@ -64,5 +64,5 @@ UnityEditor.Scripting.ScriptCompilers.CreateCompilerInstance (MonoIsland island,
 - An integration part between unity3d and incremental compiler is based on
   [alexzzzz](https://bitbucket.org/alexzzzz/unity-c-5.0-and-6.0-integration/src)'s works.
 - Mono MDB writer for roslyn is based on
-  [marek-safar](https://github.com/marek-safar)'s
+  [DavidKarlas](https://github.com/DavidKarlas)'s
   [work](https://github.com/mono/roslyn/pull/4).
