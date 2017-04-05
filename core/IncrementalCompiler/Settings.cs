@@ -22,7 +22,7 @@ namespace IncrementalCompiler
             if (File.Exists(fileName) == false)
                 return null;
 
-            using (var stream = new FileStream(fileName, FileMode.Open))
+            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 return Load(stream);
             }
