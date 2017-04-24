@@ -71,8 +71,10 @@
     <Compile Include="CompileResult.cs" />
     <Compile Include="CompilerService.cs" />
     <Compile Include="CompilerServiceClient.cs" />
+    <Compile Include="CompilerServiceHelper.cs" />
     <Compile Include="CompilerServiceServer.cs" />
     <Compile Include="FileTimeList.cs" />
+    <Compile Include="PlatformHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Program.Dev.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

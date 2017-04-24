@@ -6,13 +6,8 @@ namespace IncrementalCompiler
     {
         public static CompileResult Request(int parentProcessId, string currentPath, CompileOptions options)
         {
-            var address = "net.pipe://localhost/Unity3D.IncrementalCompiler/" + parentProcessId;
-
-            var binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None)
-            {
-                MaxBufferSize = int.MaxValue,
-                MaxReceivedMessageSize = int.MaxValue
-            };
+            var address = CompilerServiceHelper.BaseAddress + parentProcessId;
+            var binding = CompilerServiceHelper.GetBinding();
             var ep = new EndpointAddress(address);
             var channel = ChannelFactory<ICompilerService>.CreateChannel(binding, ep);
             return channel.Build(currentPath, options);
