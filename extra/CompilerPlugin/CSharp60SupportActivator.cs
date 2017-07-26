@@ -16,8 +16,8 @@ public static class CSharp60SupportActivator
 
 	private static List<SupportedLanguage> GetSupportedLanguages()
 	{
-		var fieldInfo = typeof(ScriptCompilers).GetField("_supportedLanguages", BindingFlags.NonPublic | BindingFlags.Static);
-		var languages = (List<SupportedLanguage>)fieldInfo.GetValue(null);
+        var fieldInfo = typeof(ScriptCompilers).GetField("SupportedLanguages", BindingFlags.NonPublic | BindingFlags.Static);
+        var languages = (List<SupportedLanguage>)fieldInfo.GetValue(null);
 		return languages;
 	}
 }
