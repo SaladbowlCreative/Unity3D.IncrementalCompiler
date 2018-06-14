@@ -1,1 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?><Settings>  <!--     DebugSymbolFile: Type of debugging symbol file.    - None : Nothing    - Mdb : Create mono debug database (MDB) with embedded RoslynMdbWriter    - Pdb : Create program database (PDB)    - PdbToMdb : Create MDB file using pdb2mdb tool from generated pdb  -->  <DebugSymbolFile>Mdb</DebugSymbolFile>  <!--     PrebuiltOutputReuse:    - None : Alway emit fresh one    - WhenNoChange : When nothing changed in sources and references, reuse prebuilt results.    - WhenNoSourceChange : When nothing changed in sources and references (except update of some references),                           reuse prebuilt results.  -->  <PrebuiltOutputReuse>WhenNoSourceChange</PrebuiltOutputReuse></Settings>
+<?xml version="1.0" encoding="UTF-8"?>
+<Settings>
+
+  <!-- 
+    DebugSymbolFile: Type of debugging symbol file.
+    - None : Nothing
+    - Mdb : Create mono debug database (MDB) with embedded RoslynMdbWriter
+    - Pdb : Create program database (PDB)
+    - PdbToMdb : Create MDB file using pdb2mdb tool from generated pdb
+  -->
+  <DebugSymbolFile>PdbToMdb</DebugSymbolFile>
+
+  <!-- 
+    PrebuiltOutputReuse:
+    - None : Alway emit fresh one
+    - WhenNoChange : When nothing changed in sources and references, reuse prebuilt results.
+    - WhenNoSourceChange : When nothing changed in sources and references (except update of some references),
+                           reuse prebuilt results.
+  -->
+  <PrebuiltOutputReuse>WhenNoChange</PrebuiltOutputReuse>
+
+</Settings>

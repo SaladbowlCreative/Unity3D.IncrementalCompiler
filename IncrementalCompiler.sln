@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IncrementalCompiler", "core\IncrementalCompiler\IncrementalCompiler.csproj", "{44B41B02-CCE7-40BE-8B98-164AEEF1D4B1}"
 EndProject
@@ -18,6 +18,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoslynMdbWriter", "core\RoslynMdbWriter\RoslynMdbWriter.csproj", "{286226F3-564D-480A-B6C2-2D207CBFB064}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoslynCompilerFix", "core\RoslynCompilerFix\RoslynCompilerFix.csproj", "{75048769-3DF1-40B6-9F3C-8D5C91501FBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeGeneration", "CodeGeneration", "{1C392DEF-0E87-4202-9946-4A087D7AD1ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerationAttributes", "GenerationAttributes\GenerationAttributes.csproj", "{0E0E523D-9842-4D2E-A304-59EF5C6CFFFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,10 @@ Global
 		{75048769-3DF1-40B6-9F3C-8D5C91501FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75048769-3DF1-40B6-9F3C-8D5C91501FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75048769-3DF1-40B6-9F3C-8D5C91501FBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E0E523D-9842-4D2E-A304-59EF5C6CFFFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E0E523D-9842-4D2E-A304-59EF5C6CFFFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E0E523D-9842-4D2E-A304-59EF5C6CFFFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E0E523D-9842-4D2E-A304-59EF5C6CFFFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +68,9 @@ Global
 		{B19F1DAC-FA9A-4749-9E03-1848D29BFCCD} = {A22672B3-D1C4-47C0-AB82-6D22BBB94BBB}
 		{286226F3-564D-480A-B6C2-2D207CBFB064} = {092669A2-567F-4C73-A01E-AEBA2C733994}
 		{75048769-3DF1-40B6-9F3C-8D5C91501FBC} = {092669A2-567F-4C73-A01E-AEBA2C733994}
+		{0E0E523D-9842-4D2E-A304-59EF5C6CFFFD} = {1C392DEF-0E87-4202-9946-4A087D7AD1ED}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {88A899B4-3F4C-4873-87E6-6D9025ADA54E}
 	EndGlobalSection
 EndGlobal

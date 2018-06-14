@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\JurgisRainys\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_IncrementalCompiler.753160533.00" t="ExcludeRecursive" />
+    <e p="C:\work\unity\Unity3D.IncrementalCompiler" t="IncludeFlat">
+      <e p="CodeGeneration" t="Include" />
+      <e p="Core" t="Include">
+        <e p="IncrementalCompiler" t="IncludeRecursive">
+          <e p="App.config" t="Include" />
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="CodeGeneration.cs" t="Include" />
+          <e p="CompileOptions.cs" t="Include" />
+          <e p="Compiler.cs" t="Include" />
+          <e p="CompileResult.cs" t="Include" />
+          <e p="CompilerService.cs" t="Include" />
+          <e p="CompilerServiceClient.cs" t="Include" />
+          <e p="CompilerServiceHelper.cs" t="Include" />
+          <e p="CompilerServiceServer.cs" t="Include" />
+          <e p="Extensions.cs" t="Include" />
+          <e p="FileTimeList.cs" t="Include" />
+          <e p="IncrementalCompiler.csproj" t="IncludeRecursive" />
+          <e p="IncrementalCompiler.xml" t="Include" />
+          <e p="MacroProcessor.cs" t="Include" />
+          <e p="MacroRewriter.cs" t="Include" />
+          <e p="obj" t="ExcludeRecursive" />
+          <e p="packages.config" t="Include" />
+          <e p="PlatformHelper.cs" t="Include" />
+          <e p="Program.cs" t="Include" />
+          <e p="Program.Dev.cs" t="Include" />
+          <e p="Properties" t="Include">
+            <e p="AssemblyInfo.cs" t="Include" />
+          </e>
+          <e p="Settings.cs" t="Include" />
+        </e>
+        <e p="RoslynCompilerFix" t="IncludeRecursive">
+          <e p="App.config" t="Include" />
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="CecilExtensions.cs" t="Include" />
+          <e p="CSharpCompilerFix.cs" t="Include" />
+          <e p="obj" t="ExcludeRecursive" />
+          <e p="packages.config" t="Include" />
+          <e p="Program.cs" t="Include" />
+          <e p="Properties" t="Include">
+            <e p="AssemblyInfo.cs" t="Include" />
+          </e>
+          <e p="RoslynCompilerFix.csproj" t="IncludeRecursive" />
+        </e>
+        <e p="RoslynMdbWriter" t="IncludeRecursive">
+          <e p="App.config" t="Include" />
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="MdbHelper.cs" t="Include" />
+          <e p="MdbWriter.cs" t="Include" />
+          <e p="MonoSymbolFile.cs" t="Include" />
+          <e p="MonoSymbolTable.cs" t="Include" />
+          <e p="MonoSymbolWriter.cs" t="Include" />
+          <e p="obj" t="ExcludeRecursive" />
+          <e p="packages.config" t="Include" />
+          <e p="PclFileAccess.cs" t="Include" />
+          <e p="Properties" t="Include">
+            <e p="AssemblyInfo.cs" t="Include" />
+          </e>
+          <e p="RoslynInternalKey.Private.snk" t="Include" />
+          <e p="RoslynInternalKey.Public.snk" t="Include" />
+          <e p="RoslynMdbWriter.csproj" t="IncludeRecursive" />
+          <e p="SourceMethodBuilder.cs" t="Include" />
+          <e p="UnsafeComStreamWrapper.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Extra" t="Include">
+        <e p="CompilerPlugin\CSharp60SupportActivator.cs" t="Include" />
+        <e p="CompilerPlugin\CSharpProjectProcessor.cs" t="Include" />
+        <e p="CompilerPlugin\CustomCSharpCompiler.cs" t="Include" />
+        <e p="CompilerPlugin\CustomCSharpLanguage.cs" t="Include" />
+        <e p="CompilerPlugin\Properties\AssemblyInfo.cs" t="Include" />
+        <e p="CompilerPlugin.Unity4" t="IncludeRecursive">
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="CompilerPlugin.Unity4.csproj" t="IncludeRecursive" />
+          <e p="obj" t="ExcludeRecursive" />
+          <e p="Properties" t="Include" />
+        </e>
+        <e p="CompilerPlugin.Unity5" t="IncludeRecursive">
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="CompilerPlugin.Unity5.csproj" t="IncludeRecursive" />
+          <e p="obj" t="ExcludeRecursive" />
+          <e p="Properties" t="Include" />
+        </e>
+        <e p="UniversalCompiler" t="IncludeRecursive">
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="Compilers" t="Include">
+            <e p="Compiler.cs" t="Include" />
+            <e p="Incremental60Compiler.cs" t="Include" />
+            <e p="Microsoft60Compiler.cs" t="Include" />
+            <e p="Mono30Compiler.cs" t="Include" />
+            <e p="Mono60Compiler.cs" t="Include" />
+          </e>
+          <e p="Logger.cs" t="Include" />
+          <e p="obj" t="ExcludeRecursive" />
+          <e p="Platform.cs" t="Include" />
+          <e p="Program.cs" t="Include" />
+          <e p="Properties" t="Include">
+            <e p="AssemblyInfo.cs" t="Include" />
+          </e>
+          <e p="Settings.cs" t="Include" />
+          <e p="UniversalCompiler.csproj" t="IncludeRecursive" />
+          <e p="UniversalCompiler.xml" t="Include" />
+        </e>
+      </e>
+      <e p="GenerationAttributes" t="IncludeRecursive">
+        <e p="Case.cs" t="Include" />
+        <e p="GenerationAttributes.csproj" t="IncludeRecursive" />
+        <e p="Java.cs" t="Include" />
+        <e p="Macros.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="IncrementalCompiler.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="samples\Basic\Assets\Libs" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

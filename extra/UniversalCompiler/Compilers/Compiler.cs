@@ -13,7 +13,7 @@ internal abstract class Compiler
 	}
 
 	public abstract string Name { get; }
-	public virtual bool NeedsPdb2MdbConversion => false;
+	public abstract bool NeedsPdb2MdbConversion { get; }
 
 	protected readonly Logger logger;
 	protected readonly string compilerPath;
@@ -29,9 +29,9 @@ internal abstract class Compiler
 		this.pbd2MdbPath = pbd2MdbPath;
 	}
 
-	public int Compile(Platform platform, string monoProfileDir, string unityEditorDataDir, string responseFile)
+	public int Compile(Platform platform, string unityEditorDataDir, string targetProfileDir, string responseFile)
 	{
-		var process = CreateCompilerProcess(platform, monoProfileDir, unityEditorDataDir, responseFile);
+		var process = CreateCompilerProcess(platform, unityEditorDataDir, targetProfileDir, responseFile);
 		process.OutputDataReceived += (sender, e) => outputLines.Add(e.Data);
 		process.ErrorDataReceived += (sender, e) => errorLines.Add(e.Data);
 
@@ -42,6 +42,7 @@ internal abstract class Compiler
 		process.BeginOutputReadLine();
 		process.BeginErrorReadLine();
 		process.WaitForExit();
+
 		logger?.Append($"Exit code: {process.ExitCode}");
 
 		return process.ExitCode;
@@ -77,31 +78,18 @@ internal abstract class Compiler
 		}
 	}
 
-	protected abstract Process CreateCompilerProcess(Platform platform, string monoProfileDir, string unityEditorDataDir, string responseFile);
+	protected abstract Process CreateCompilerProcess(Platform platform, string unityEditorDataDir, string targetProfileDir, string responseFile);
 
-	public virtual void ConvertDebugSymbols(Platform platform, string libraryPath, string unityEditorDataDir) { }
+	public virtual void ConvertDebugSymbols(Platform platform, string targetAssemblyPath, string unityEditorDataDir) { }
 
-	protected static ProcessStartInfo CreateOSDependentStartInfo(Platform platform, ProcessRuntime processRuntime, string processPath, string processArguments,
-																 string unityEditorDataDir)
+	protected static ProcessStartInfo CreateOSDependentStartInfo(Platform platform, ProcessRuntime processRuntime, string processPath,
+																 string processArguments, string unityEditorDataDir)
 	{
 		ProcessStartInfo startInfo;
 
 		if (platform == Platform.Windows)
 		{
-			switch (processRuntime)
-			{
-				case ProcessRuntime.CLR20:
-					var runtimePath = Path.Combine(unityEditorDataDir, @"Mono/bin/mono.exe");
-					startInfo = new ProcessStartInfo(runtimePath, $"\"{processPath}\" {processArguments}");
-					break;
-
-				case ProcessRuntime.CLR40:
-					startInfo = new ProcessStartInfo(processPath, processArguments);
-					break;
-
-				default:
-					throw new ArgumentOutOfRangeException(nameof(processRuntime), processRuntime, null);
-			}
+			startInfo = new ProcessStartInfo(processPath, processArguments);
 		}
 		else
 		{
@@ -109,7 +97,11 @@ internal abstract class Compiler
 			switch (processRuntime)
 			{
 				case ProcessRuntime.CLR40:
-					if (File.Exists("/usr/local/bin/mono"))
+					if (File.Exists("/Library/Frameworks/Mono.framework/Commands/mono"))
+					{
+						runtimePath = "/Library/Frameworks/Mono.framework/Commands/mono";
+					}
+					else if (File.Exists("/usr/local/bin/mono"))
 					{
 						runtimePath = "/usr/local/bin/mono";
 					}

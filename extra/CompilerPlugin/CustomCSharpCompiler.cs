@@ -10,6 +10,8 @@ using UnityEngine;
 
 internal class CustomCSharpCompiler : MonoCSharpCompiler
 {
+    public const string COMPILER_DEFINE = "ALWAYS_ON";
+
 #if UNITY4
 	public CustomCSharpCompiler(MonoIsland island, bool runUpdater) : base(island)
 	{
@@ -58,7 +60,10 @@ internal class CustomCSharpCompiler : MonoCSharpCompiler
 			"-out:" + PrepareFileName(_island._output),
 			"-unsafe"
 		};
-		foreach (var reference in _island._references)
+
+	    arguments.Add("-define:" + COMPILER_DEFINE);
+
+        foreach (var reference in _island._references)
 		{
 			arguments.Add("-r:" + PrepareFileName(reference));
 		}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\JurgisRainys\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_Basic.1092533385.00" t="ExcludeRecursive" />
+    <e p="C:\work\unity\Unity3D.IncrementalCompiler\samples\Basic" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets\CSharp vNext Support" t="Include">
+        <e p="Editor" t="Include">
+          <e p="CompilerSettings.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Assets\Scripts" t="Include">
+        <e p="CaseClassTest.cs" t="Include" />
+      </e>
+      <e p="Basic.sln" t="IncludeFlat" />
+      <e p="Generated\Assembly-CSharp\Assets\Scripts\CaseClassTest.cs" t="Include" />
+      <e p="Generated\Assembly-CSharp\com\tinylabproductions\Generated\java\AssemblyCSharp.cs" t="Include" />
+      <e p="Generated\Assembly-CSharp-Editor\com\tinylabproductions\Generated\java\AssemblyCSharpEditor.cs" t="Include" />
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>

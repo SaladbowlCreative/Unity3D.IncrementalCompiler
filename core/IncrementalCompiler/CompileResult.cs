@@ -10,5 +10,11 @@ namespace IncrementalCompiler
         [DataMember] public bool Succeeded;
         [DataMember] public List<string> Warnings = new List<string>();
         [DataMember] public List<string> Errors = new List<string>();
+
+        public void Clear() {
+            Succeeded = false;
+            Warnings.Clear();
+            Errors.Clear();
+        }
     }
 }

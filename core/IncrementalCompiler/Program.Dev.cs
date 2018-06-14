@@ -63,7 +63,7 @@ namespace IncrementalCompiler
                     w.Start();
                     Console.WriteLine("Run");
 
-                    var result = CompilerServiceClient.Request(parentProcessId, curPath, options);
+                    var result = CompilerServiceClient.Request(parentProcessId, curPath, options, false);
 
                     w.Stop();
 
@@ -100,11 +100,6 @@ namespace IncrementalCompiler
                         else
                             serverProcess = null;
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    return 1;
                 }
             }
         }

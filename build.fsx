@@ -39,17 +39,21 @@ Target "Package" (fun _ ->
     // let's make package
     for target in ["Unity4"; "Unity5"] do
         let targetDir = binDir @@ target
-        let editorDir = targetDir @@ "Assets" @@ "Editor"
+        let editorDir = targetDir @@ "Assets" @@ "CSharp vNext Support" @@ "Editor"
+        let pluginsDir = targetDir @@ "Assets" @@ "Plugins" @@ "Incremental Compiler"
         let compilerDir = targetDir @@ "Compiler"
         // create dirs
         CreateDir targetDir
         CreateDir editorDir
         CreateDir compilerDir
+        CreateDir pluginsDir
         // copy output files
         "./core/IncrementalCompiler/bin/Release/IncrementalCompiler.packed.fixed.exe" |> CopyFile (compilerDir @@ "IncrementalCompiler.exe")
         "./core/IncrementalCompiler/IncrementalCompiler.xml" |> CopyFile compilerDir
         "./core/UnityPackage/Assets/Editor/CompilerSettings.cs" |> CopyFile editorDir
-        "./extra/CompilerPlugin." + target + "/bin/Release/Unity.PureCSharpTests.dll" |> CopyFile (editorDir @@ "CompilerPlugin.dll")
+        "./GenerationAttributes/bin/Release/GenerationAttributes.dll" |> CopyFile pluginsDir
+        "./GenerationAttributes/bin/Release/GenerationAttributes.xml" |> CopyFile pluginsDir
+        "./extra/CompilerPlugin." + target + "/bin/Release/Unity.PureCSharpTests.dll" |> CopyFile (editorDir @@ "CSharpVNextSupport.dll")
         "./extra/UniversalCompiler/bin/Release/UniversalCompiler.exe" |> CopyFile compilerDir
         "./extra/UniversalCompiler/UniversalCompiler.xml" |> CopyFile compilerDir
         "./tools/pdb2mdb/pdb2mdb.exe" |> CopyFile compilerDir

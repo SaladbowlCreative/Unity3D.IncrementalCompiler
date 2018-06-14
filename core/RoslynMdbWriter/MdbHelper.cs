@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using Microsoft.CodeAnalysis.Emit;
 using Microsoft.CodeAnalysis;
@@ -36,8 +37,13 @@ namespace Mono.CompilerServices.SymbolWriter
                 SymWriterFactory = () => new MdbWriter()
             };
 
+            // internal EmitResult Emit(Stream peStream, Stream metadataPEStream, Stream pdbStream, Stream xmlDocumentationStream, Stream win32Resources,
+            // IEnumerable<ResourceDescription> manifestResources, EmitOptions options, IMethodSymbol debugEntryPoint, Stream sourceLinkStream, IEnumerable<EmbeddedText> embeddedTexts,
+            // CompilationTestData testData, CancellationToken cancellationToken)
+
             return compilation.Emit(
                 peStream,
+                null,
                 pdbStream,
                 xmlDocumentationStream,
                 win32Resources,
@@ -45,7 +51,7 @@ namespace Mono.CompilerServices.SymbolWriter
                 options,
                 debugEntryPoint,
                 sourceLinkStream,
-                null,
+                Enumerable.Empty<EmbeddedText>(),
                 testData,
                 cancellationToken);
         }
