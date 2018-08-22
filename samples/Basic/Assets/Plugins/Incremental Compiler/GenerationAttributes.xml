@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GenerationAttributes</name>
+    </assembly>
+    <members>
+        <member name="T:GenerationAttributes.JavaListenerInterfaceAttribute">
+            <summary>
+            When added on a C# interface [CS_interface]:
+            1. Generates identical interface in java with all the methods.
+            2. Generates a class named [CS_interface]Proxy that implements the generated java interface.
+            Generated class extends tlplib.JavaListenerProxy
+            </summary>
+        </member>
+        <member name="F:GenerationAttributes.JavaListenerInterfaceAttribute.Module">
+            <summary>Android module the code will be generated in</summary>
+        </member>
+        <member name="T:GenerationAttributes.JavaMethodAttribute">
+            <summary>
+            Can only be used inside class with JavaClass attribute.
+            Generates a method inside that java class.
+            Method should not have an implementation. Compiler generates C# method body at compile-time.
+            When you call this method in C#, it gets redirected to Java automatically.
+            </summary>
+        </member>
+        <member name="F:GenerationAttributes.JavaMethodAttribute.MethodBody">
+            <summary>Method body in generated Java code.</summary>
+        </member>
+        <member name="T:GenerationAttributes.JavaClassAttribute">
+            <summary>
+            Generates a java class with provided imports and body.
+            When you instantiate this object, then a mirror object is also instantiated in Java.
+            You should use <see cref="T:GenerationAttributes.JavaMethodAttribute"/> on methods inside this class.
+            </summary>
+        </member>
+        <member name="F:GenerationAttributes.JavaClassAttribute.Module">
+            <summary>Android module the code will be generated in</summary>
+        </member>
+        <member name="F:GenerationAttributes.JavaClassAttribute.Imports">
+            <summary>Java code that will be put at top of the generated file</summary>
+        </member>
+        <member name="F:GenerationAttributes.JavaClassAttribute.ClassBody">
+            <summary>Java code that will be put in the generated class</summary>
+        </member>
+        <member name="T:GenerationAttributes.JavaBindingAttribute">
+            <summary>
+            Use this on classes that extend Binding, AndroidJavaObject and AndroidJavaProxy.
+            This attribute is used by <see cref="T:GenerationAttributes.JavaMethodAttribute"/> to determine what object type this is in Java
+            when generating code.
+            </summary>
+        </member>
+        <member name="F:GenerationAttributes.JavaBindingAttribute.JavaClass">
+            <summary>Full java class name of associated java object</summary>
+        </member>
+    </members>
+</doc>

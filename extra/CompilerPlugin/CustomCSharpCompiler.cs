@@ -1,15 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using UnityEditor;
 using UnityEditor.Scripting;
 using UnityEditor.Scripting.Compilers;
 using UnityEditor.Utils;
-using UnityEngine;
+using Debug = UnityEngine.Debug;
 
-internal class CustomCSharpCompiler : MonoCSharpCompiler
-{
+public class CompilationFlags {
+    public static bool checkIfBuildCompiles = false;
+}
+
+internal class CustomCSharpCompiler : MonoCSharpCompiler {
+    public const string COMPILER_DEFINE = "ALWAYS_ON";
+
 #if UNITY4
 	public CustomCSharpCompiler(MonoIsland island, bool runUpdater) : base(island)
 	{
@@ -20,16 +28,17 @@ internal class CustomCSharpCompiler : MonoCSharpCompiler
 	}
 #endif
 
-	private string[] GetAdditionalReferences()
+    private string[] GetAdditionalReferences()
 	{
 		// calling base method via reflection
 		var bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic;
 		var methodInfo = GetType().BaseType.GetMethod(nameof(GetAdditionalReferences), bindingFlags);
+        if (methodInfo == null) return null;
 		var result = (string[])methodInfo.Invoke(this, null);
 		return result;
-	}
+    }
 
-	private string GetCompilerPath(List<string> arguments)
+    private string GetCompilerPath(List<string> arguments)
 	{
 		// calling base method via reflection
 		var bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic;
@@ -58,10 +67,30 @@ internal class CustomCSharpCompiler : MonoCSharpCompiler
 			"-out:" + PrepareFileName(_island._output),
 			"-unsafe"
 		};
-		foreach (var reference in _island._references)
-		{
-			arguments.Add("-r:" + PrepareFileName(reference));
-		}
+
+	    arguments.Add("-define:" + COMPILER_DEFINE);
+
+        var unity5References = GetAdditionalReferences();
+        if (unity5References != null)
+        {
+            foreach (string path in unity5References)
+            {
+                var text = Path.Combine(GetProfileDirectoryViaReflection(), path);
+                if (File.Exists(text))
+                {
+                    arguments.Add("-r:" + PrepareFileName(text));
+                }
+            }
+        }
+        else
+        {
+            // Unity 2017+
+            foreach (var reference in _island._references)
+            {
+                arguments.Add("-r:" + PrepareFileName(reference));
+            }
+        }
+
 
 		foreach (var define in _island._defines.Distinct())
 		{
@@ -73,17 +102,12 @@ internal class CustomCSharpCompiler : MonoCSharpCompiler
 			arguments.Add(PrepareFileName(file));
 		}
 
-		var additionalReferences = GetAdditionalReferences();
-		foreach (string path in additionalReferences)
-		{
-			var text = Path.Combine(GetProfileDirectoryViaReflection(), path);
-			if (File.Exists(text))
-			{
-				arguments.Add("-r:" + PrepareFileName(text));
-			}
-		}
+        foreach (string fileName in _island._references)
+        {
+            arguments.Add("-r:" + PrepareFileName(fileName));
+        }
 
-		var universalCompilerPath = GetUniversalCompilerPath();
+        var universalCompilerPath = GetUniversalCompilerPath();
 		if (universalCompilerPath != null)
 		{
 			// use universal compiler.
@@ -105,7 +129,25 @@ internal class CustomCSharpCompiler : MonoCSharpCompiler
 					arguments.Add("@" + rspFileName);
 			}
 
-			return StartCompiler(_island._target, universalCompilerPath, arguments);
+		    var program = StartCompiler(_island._target, universalCompilerPath, arguments);
+
+		    if (!CompilationFlags.checkIfBuildCompiles) return program;
+
+            var compiledDllName = _island._output.Split('/').Last();
+            if (compiledDllName != "Assembly-CSharp.dll") return program;
+
+		    program.WaitForExit();
+            if (program.ExitCode != 0) return program;
+
+		    // message contents are used in CI script, so this shouldnt be changed
+		    Debug.Log($"Scripts successfully compile in Build mode");
+		    // CI script expects to find log from above if process was killed
+		    // sometimes process.Kill() happens faster than Debug.Log() logs our message
+		    // sleeping the thread ensures that message was logged before we kill the process
+		    Thread.Sleep(5000);
+
+		    Process.GetCurrentProcess().Kill();
+		    throw new Exception("unreachable code");
 		}
 		else
 		{

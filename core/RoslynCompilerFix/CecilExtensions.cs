@@ -18,12 +18,12 @@ namespace Mono.Cecil
     {
         public static MethodDefinition GetMethod(this TypeDefinition self, string name)
         {
-            return self.Methods.Where(m => m.Name == name).First();
+            return self.Methods.First(m => m.Name == name);
         }
 
         public static FieldDefinition GetField(this TypeDefinition self, string name)
         {
-            return self.Fields.Where(f => f.Name == name).First();
+            return self.Fields.First(f => f.Name == name);
         }
 
         public static TypeDefinition ToDefinition(this Type self)

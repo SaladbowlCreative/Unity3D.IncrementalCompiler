@@ -1,2 +1,2 @@
-XCOPY /S /Y ..\..\bin\Unity5\* .
+XCOPY ..\..\bin\UnityCompiler\* /S /Y 
 PAUSE.

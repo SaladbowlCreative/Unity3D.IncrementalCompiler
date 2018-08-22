@@ -9,16 +9,24 @@ internal class Incremental60Compiler : Compiler
 	public override bool NeedsPdb2MdbConversion => false;
 
 	public Incremental60Compiler(Logger logger, string directory)
-		: base(logger, Path.Combine(directory, "IncrementalCompiler.exe")) { }
+		: base(logger, Path.Combine(directory, "IncrementalCompiler.exe"), Path.Combine(directory, "pdb2mdb.exe")) { }
 
 	public static bool IsAvailable(string directory) => File.Exists(Path.Combine(directory, "IncrementalCompiler.exe"));
 
-	protected override Process CreateCompilerProcess(Platform platform, string monoProfileDir, string unityEditorDataDir, string responseFile)
+	protected override Process CreateCompilerProcess(Platform platform, string unityEditorDataDir, string targetProfileDir, string responseFile)
 	{
-		var systemDllPath = Path.Combine(monoProfileDir, "System.dll");
-		var systemCoreDllPath = Path.Combine(monoProfileDir, "System.Core.dll");
-		var systemXmlDllPath = Path.Combine(monoProfileDir, "System.Xml.dll");
-		var mscorlibDllPath = Path.Combine(monoProfileDir, "mscorlib.dll");
+	    if (platform == Platform.Mac)
+        {
+	        string filename = responseFile.TrimStart('@');
+	        string content = File.ReadAllText(filename);
+	        content = content.Replace('\'', '\"');
+	        File.WriteAllText(filename, content);
+	    }
+
+        var systemDllPath = Path.Combine(targetProfileDir, "System.dll");
+		var systemCoreDllPath = Path.Combine(targetProfileDir, "System.Core.dll");
+		var systemXmlDllPath = Path.Combine(targetProfileDir, "System.Xml.dll");
+		var mscorlibDllPath = Path.Combine(targetProfileDir, "mscorlib.dll");
 
 		string processArguments = "-nostdlib+ -noconfig "
 								  + $"-r:\"{mscorlibDllPath}\" "

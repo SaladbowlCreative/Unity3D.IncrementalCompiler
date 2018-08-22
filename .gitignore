@@ -31,6 +31,10 @@ artifacts/
 *.vsp
 *.vspx
 
+# Intellij IDEA
+.idea
+*.iml
+
 # Visual Studio Code
 .vscode
 
